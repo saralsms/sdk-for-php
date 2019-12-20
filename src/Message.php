@@ -27,4 +27,30 @@ final class Message extends Client
             throw new SaralSMSException($e->getMessage(), $e->getCode());
         }
     }
+
+    /**
+     * --------------------------------------------------
+     * This will send the message to multiple number.
+     * --------------------------------------------------
+     * @param array $numbers
+     * @param string $message
+     * @return object
+     * @throws SaralSMSException
+     * --------------------------------------------------
+     */
+    public function sendBulkMessage(array $numbers, string $message): object
+    {
+        // init required params
+        $params = array_merge($this->authorization, [
+            'to' => $numbers,
+            'text' => $message
+        ]);
+
+        try {
+            $request = $this->client->request('POST', '/message/sendBulkMessage', ['form_params' => $params]);
+            return json_decode($request->getBody()->getContents(), false);
+        } catch (Exception $e) {
+            throw new SaralSMSException($e->getMessage(), $e->getCode());
+        }
+    }
 }
