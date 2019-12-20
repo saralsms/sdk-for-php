@@ -12,17 +12,17 @@ final class Message extends Client
      * @throws SaralSMSException
      * --------------------------------------------------
      */
-    public function sendMessage(string $number, string $message): object
+    public function sendMessage($number, $message)
     {
         // init required params
-        $params = array_merge($this->authorization, [
+        $params = array_merge($this->authorization, array(
             'to' => $number,
             'text' => $message
-        ]);
+        ));
 
         try {
-            $request = $this->client->request('POST', '/message/sendMessage', ['form_params' => $params]);
-            return json_decode($request->getBody()->getContents(), false);
+            $request = $this->request('POST', 'message/sendMessage', $params);
+            return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
         }
@@ -38,17 +38,17 @@ final class Message extends Client
      * @throws SaralSMSException
      * --------------------------------------------------
      */
-    public function sendBulkMessage(array $numbers, string $message): object
+    public function sendBulkMessage($numbers, $message)
     {
         // init required params
-        $params = array_merge($this->authorization, [
+        $params = array_merge($this->authorization, array(
             'to' => $numbers,
             'text' => $message
-        ]);
+        ));
 
         try {
-            $request = $this->client->request('POST', '/message/sendBulkMessage', ['form_params' => $params]);
-            return json_decode($request->getBody()->getContents(), false);
+            $request = $this->request('POST', 'message/sendBulkMessage', $params);
+            return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
         }

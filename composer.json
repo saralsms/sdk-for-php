@@ -25,14 +25,10 @@
     "verification"
   ],
   "require": {
-    "php": "^7.2",
+    "php": "^5.3",
     "ext-curl": "*",
-    "ext-hash": "*",
     "ext-json": "*",
-    "ext-openssl": "*",
-    "guzzlehttp/guzzle": "^6.5",
-    "guzzlehttp/promises": "^1.3",
-    "guzzlehttp/psr7": "^1.6"
+    "ext-openssl": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

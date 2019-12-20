@@ -11,11 +11,11 @@ final class Account extends Client
      * @throws SaralSMSException
      * --------------------------------------------------
      */
-    public function profile(): object
+    public function profile()
     {
         try {
-            $request = $this->client->request('GET', '/account/profile?' . http_build_query($this->authorization));
-            return json_decode($request->getBody()->getContents(), false);
+            $request = $this->request('GET', 'account/profile', $this->authorization);
+            return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
         }
@@ -30,11 +30,11 @@ final class Account extends Client
      * @throws SaralSMSException
      * --------------------------------------------------
      */
-    public function balance(): object
+    public function balance()
     {
         try {
-            $request = $this->client->request('GET', '/account/balance?' . http_build_query($this->authorization));
-            return json_decode($request->getBody()->getContents(), false);
+            $request = $this->request('GET', 'account/balance', $this->authorization);
+            return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
         }
