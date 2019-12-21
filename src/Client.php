@@ -3,16 +3,6 @@
 class Client
 {
     /**
-     * @var string $liveUrl
-     */
-    private $liveUrl = 'https://api.saralsms.com/v1/';
-
-    /**
-     * @var string $sandboxUrl
-     */
-    private $sandboxUrl = 'https://devapi.saralsms.com/v1/';
-
-    /**
      * @var string $baseUrl
      */
     protected $baseUrl;
@@ -28,6 +18,9 @@ class Client
      */
     public function __construct(array $configs)
     {
+        // init env loader
+        $loader = new Loader();
+
         // token required for authorization
         if (isset($configs['token']) && !empty($configs['token'])) {
             $this->authorization = array('token' => $configs['token']);
@@ -37,9 +30,9 @@ class Client
 
         // optional sandbox mode
         if (isset($configs['is_sandbox']) && $configs['is_sandbox']) {
-            $this->baseUrl = $this->sandboxUrl;
+            $this->baseUrl = $loader->getEnv('SARALSMS_SANDBOX_URL');
         } else {
-            $this->baseUrl = $this->liveUrl;
+            $this->baseUrl = $loader->getEnv('SARALSMS_LIVE_URL');
         }
     }
 
