@@ -1,10 +1,12 @@
 <?php
 
-namespace SaralSMS;
+namespace SaralSMS\Message;
 
 use Exception;
+use SaralSMS\Client;
+use SaralSMS\Exception\SaralSMSException;
 
-final class Message extends Client
+final class Message extends Client implements IMessage
 {
     /**
      * --------------------------------------------------

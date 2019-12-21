@@ -1,6 +1,6 @@
 <?php
 
-namespace SaralSMS;
+namespace SaralSMS\Exception;
 
 use Exception;
 

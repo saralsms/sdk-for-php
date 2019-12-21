@@ -1,65 +1,23 @@
 <?php
 
-namespace SaralSMS;
+namespace SaralSMS\Helper;
 
 use SaralSMS\Exception\SaralSMSException;
-use SaralSMS\Helper\Loader;
 
-class Client
+class HttpRequest
 {
-    /**
-     * @var Loader $loader
-     */
-    protected $loader;
-
-    /**
-     * @var string $baseUrl
-     */
-    protected $baseUrl;
-
-    /**
-     * @var array $authorization
-     */
-    protected $authorization;
-
-    /**
-     * @param array $configs
-     * @throws SaralSMSException
-     */
-    public function __construct(array $configs)
-    {
-        // init env loader
-        if (!class_exists('Loader')) {
-            $this->loader = new Loader();
-        }
-
-        // token required for authorization
-        if (isset($configs['token']) && !empty($configs['token'])) {
-            $this->authorization = array('token' => $configs['token']);
-        } else {
-            throw new SaralSMSException('The API token is required.');
-        }
-
-        // optional sandbox mode
-        if (isset($configs['is_sandbox']) && $configs['is_sandbox']) {
-            $this->baseUrl = $this->loader->getEnv('SARALSMS_SANDBOX_URL');
-        } else {
-            $this->baseUrl = $this->loader->getEnv('SARALSMS_LIVE_URL');
-        }
-    }
-
     /**
      * --------------------------------------------------
      * create cURL client and make the http request.
      * --------------------------------------------------
      * @param $method
-     * @param $route
+     * @param $url
      * @param array $params
      * @return string
      * @throws SaralSMSException
      * --------------------------------------------------
      */
-    protected function request($method, $route, $params = array())
+    protected function request($method, $url, $params = array())
     {
         // create a new cURL resource
         $curl = curl_init();
@@ -69,14 +27,14 @@ class Client
 
         if ($method === 'POST') {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-            curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $route);
+            curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
 
             // custom headers
             $headers['Content-Type'] = array('Content-Type: application/json');
         } else {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
-            curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $route . '?' . http_build_query($params));
+            curl_setopt($curl, CURLOPT_URL, $url . '?' . http_build_query($params));
         }
 
         // set options

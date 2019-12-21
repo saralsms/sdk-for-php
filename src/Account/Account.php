@@ -1,10 +1,11 @@
 <?php
 
-namespace SaralSMS;
+namespace SaralSMS\Account;
 
 use Exception;
+use SaralSMS\Exception\SaralSMSException;
 
-final class Account extends Client
+final class Account implements IAccount
 {
     /**
      * --------------------------------------------------

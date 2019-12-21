@@ -1,10 +1,11 @@
 <?php
 
-namespace SaralSMS;
+namespace SaralSMS\Helper;
 
 use Exception;
+use SaralSMS\Exception\SaralSMSException;
 
-final class Loader
+final class Loader implements ILoader
 {
     /**
      * Loader constructor.
@@ -22,7 +23,7 @@ final class Loader
     {
         // load env file
         try {
-            $lines = file(dirname(__DIR__) . '/' . '.env.default');
+            $lines = file(dirname(__DIR__) . '/');
             foreach ($lines as $line) {
                 $line = trim($line);
                 if (!preg_match('/^#/', $line)) {
