@@ -4,9 +4,9 @@ namespace SaralSMS\Report;
 
 interface IReport
 {
-    public function getReportById();
+    public function getReportById($messageId);
 
-    public function getReportByIdentifier();
+    public function getReportByIdentifier($identifier);
 
-    public function getReports();
+    public function getReports($page);
 }

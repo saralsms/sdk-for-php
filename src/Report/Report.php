@@ -6,17 +6,38 @@ use SaralSMS\Base;
 
 final class Report extends Base implements IReport
 {
-    public function getReportById()
+    /**
+     * --------------------------------------------------
+     * This will get message report based on Message ID.
+     * --------------------------------------------------
+     * @param int $messageId
+     * --------------------------------------------------
+     */
+    public function getReportById($messageId)
     {
 
     }
 
-    public function getReportByIdentifier()
+    /**
+     * --------------------------------------------------
+     * This will get message report based on Message identifier.
+     * --------------------------------------------------
+     * @param string $identifier
+     * --------------------------------------------------
+     */
+    public function getReportByIdentifier($identifier)
     {
 
     }
 
-    public function getReports()
+    /**
+     * --------------------------------------------------
+     * This will get message report based on page number.
+     * --------------------------------------------------
+     * @param int $page
+     * --------------------------------------------------
+     */
+    public function getReports($page)
     {
 
     }
