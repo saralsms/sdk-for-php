@@ -18,7 +18,7 @@ final class Loader
     {
         // load env file
         try {
-            $lines = file(dirname(__DIR__) . '/' . '.env');
+            $lines = file(dirname(__DIR__) . '/' . '.env.default');
             foreach ($lines as $line) {
                 $line = trim($line);
                 if (!preg_match('/^#/', $line)) {
@@ -48,6 +48,3 @@ final class Loader
         $_ENV[$key] = $val;
     }
 }
-
-$loader = new Loader();
-print_r($loader->getEnv('SARALSMS_SANDBOX_URL'));

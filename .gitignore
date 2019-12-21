@@ -47,4 +47,3 @@ ehthumbs_vista.db
 
 # ignore config file
 /.init.sh
-/.env
