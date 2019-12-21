@@ -7,17 +7,22 @@ use SaralSMS\Exception\SaralSMSException;
 class HttpRequest
 {
     /**
+     * @var string $baseUrl
+     */
+    protected $baseUrl;
+
+    /**
      * --------------------------------------------------
      * create cURL client and make the http request.
      * --------------------------------------------------
      * @param $method
-     * @param $url
+     * @param $route
      * @param array $params
      * @return string
      * @throws SaralSMSException
      * --------------------------------------------------
      */
-    protected function request($method, $url, $params = array())
+    protected function request($method, $route, $params = array())
     {
         // create a new cURL resource
         $curl = curl_init();
@@ -27,14 +32,14 @@ class HttpRequest
 
         if ($method === 'POST') {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $route);
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
 
             // custom headers
             $headers['Content-Type'] = array('Content-Type: application/json');
         } else {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
-            curl_setopt($curl, CURLOPT_URL, $url . '?' . http_build_query($params));
+            curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $route . '?' . http_build_query($params));
         }
 
         // set options

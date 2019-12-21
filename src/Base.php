@@ -14,11 +14,6 @@ class Base extends HttpRequest
     protected $loader;
 
     /**
-     * @var string $baseUrl
-     */
-    protected $baseUrl;
-
-    /**
      * @var array $authorization
      */
     protected $authorization;
