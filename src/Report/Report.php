@@ -19,9 +19,9 @@ final class Report extends Base implements IReport
      */
     public function getReportById($messageId)
     {
-        // identifier is required
+        // message ID is required
         if (empty($messageId) || !is_int($messageId)) {
-            throw new SaralSMSException('The message ID is required.');
+            throw new SaralSMSException('The message ID param is required.');
         }
 
         // init the params
@@ -48,7 +48,7 @@ final class Report extends Base implements IReport
     {
         // identifier is required
         if (empty($identifier)) {
-            throw new SaralSMSException('The message identifier is required.');
+            throw new SaralSMSException('The message identifier param is required.');
         }
 
         // init the params

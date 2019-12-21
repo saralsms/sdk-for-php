@@ -20,6 +20,16 @@ final class Message extends Base implements IMessage
      */
     public function sendMessage($number, $message)
     {
+        // numbers array is required
+        if (empty($number)) {
+            throw new SaralSMSException('The number param is required.');
+        }
+
+        // message is required
+        if (empty($message)) {
+            throw new SaralSMSException('The message param is required.');
+        }
+
         // init required params
         $params = array_merge($this->authorization, array(
             'to' => $number,
@@ -27,7 +37,7 @@ final class Message extends Base implements IMessage
         ));
 
         try {
-            $request = $this->request('POST', 'message/sendMessage', $params);
+            $request = $this->request('POST', 'message/send-message', $params);
             return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
@@ -46,6 +56,16 @@ final class Message extends Base implements IMessage
      */
     public function sendBulkMessage($numbers, $message)
     {
+        // numbers array is required
+        if (!is_array($numbers) || empty($numbers)) {
+            throw new SaralSMSException('The numbers param is required.');
+        }
+
+        // message is required
+        if (empty($message)) {
+            throw new SaralSMSException('The message param is required.');
+        }
+
         // init required params
         $params = array_merge($this->authorization, array(
             'to' => $numbers,
@@ -53,7 +73,7 @@ final class Message extends Base implements IMessage
         ));
 
         try {
-            $request = $this->request('POST', 'message/sendBulkMessage', $params);
+            $request = $this->request('POST', 'message/send-bulk-message', $params);
             return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
