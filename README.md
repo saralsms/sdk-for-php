@@ -36,16 +36,34 @@ $client = new Client(array(
 ```
 
 ### Send Message
+This will send the message to single number.
 
 ```php
 $client->message->sendMessage('9841xx58', 'Text message to single number.');
 ```
 
 ### Send Bulk Message
+This will send the message to multiple number.
 
 ```php
 $client->message->sendBulkMessage(array('9841xx58', '9803xx65'), 'Text message to multiple number.');
 ```
+
+### Account Balance
+This will return the account balance on behalf of a authenticated token.
+
+```php
+$client->account->balance();
+```
+
+### Account Profile
+This will return the user profile on behalf of a authenticated token.
+     
+```php
+$client->account->profile();
+```
+
+
 
 [Live Credentials]: https://app.saralsms.com
 [Sandbox Credentials]: https://demo.saralsms.com

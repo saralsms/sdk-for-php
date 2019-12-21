@@ -10,7 +10,7 @@ final class Account extends Base implements IAccount
 {
     /**
      * --------------------------------------------------
-     * This will return the use profile on behalf of
+     * This will return the user profile on behalf of
      * a authenticated token.
      * --------------------------------------------------
      * @return object
