@@ -3,6 +3,11 @@
 class Client
 {
     /**
+     * @var Loader $loader
+     */
+    protected $loader;
+
+    /**
      * @var string $baseUrl
      */
     protected $baseUrl;
@@ -19,7 +24,9 @@ class Client
     public function __construct(array $configs)
     {
         // init env loader
-        $loader = new Loader();
+        if (!class_exists('Loader')) {
+            $this->loader = new Loader();
+        }
 
         // token required for authorization
         if (isset($configs['token']) && !empty($configs['token'])) {
@@ -30,9 +37,9 @@ class Client
 
         // optional sandbox mode
         if (isset($configs['is_sandbox']) && $configs['is_sandbox']) {
-            $this->baseUrl = $loader->getEnv('SARALSMS_SANDBOX_URL');
+            $this->baseUrl = $this->loader->getEnv('SARALSMS_SANDBOX_URL');
         } else {
-            $this->baseUrl = $loader->getEnv('SARALSMS_LIVE_URL');
+            $this->baseUrl = $this->loader->getEnv('SARALSMS_LIVE_URL');
         }
     }
 
