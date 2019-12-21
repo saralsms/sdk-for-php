@@ -31,7 +31,7 @@ use SaralSMS\Client;
 // instantiate a SaralSMS client.
 $client = new Client(array(
     'token' => 'f9c6......55c1',
-    'is_sandbox'  => true // if you are testing
+    'is_sandbox'  => false // set `true` if you are testing
 ));
 ```
 
