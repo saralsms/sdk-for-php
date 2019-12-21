@@ -3,10 +3,10 @@
 namespace SaralSMS\Message;
 
 use Exception;
-use SaralSMS\Client;
+use SaralSMS\Base;
 use SaralSMS\Exception\SaralSMSException;
 
-final class Message extends Client implements IMessage
+final class Message extends Base implements IMessage
 {
     /**
      * --------------------------------------------------

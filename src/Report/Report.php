@@ -2,9 +2,9 @@
 
 namespace SaralSMS\Report;
 
-use SaralSMS\Client;
+use SaralSMS\Base;
 
-final class Report extends Client implements IReport
+final class Report extends Base implements IReport
 {
     public function getReportById()
     {

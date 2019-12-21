@@ -3,9 +3,10 @@
 namespace SaralSMS\Account;
 
 use Exception;
+use SaralSMS\Base;
 use SaralSMS\Exception\SaralSMSException;
 
-final class Account implements IAccount
+final class Account extends Base implements IAccount
 {
     /**
      * --------------------------------------------------
