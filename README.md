@@ -20,7 +20,7 @@ We use the GitHub issues for tracking bugs and feature requests and address them
 
 ## Quick Examples
 
-### Create an SaralSMS client
+### Create a SaralSMS client
 
 ```php
 // require the composer autoloader.
@@ -33,6 +33,18 @@ $client = new Client(array(
     'token' => 'f9c6......55c1',
     'is_sandbox'  => false // set `true` if you are testing
 ));
+```
+
+### Send Message
+
+```php
+$client->message->sendMessage('9841xx58', 'Text message to single number.');
+```
+
+### Send Bulk Message
+
+```php
+$client->message->sendBulkMessage(array('9841xx58', '9803xx65'), 'Text message to multiple number.');
 ```
 
 [Live Credentials]: https://app.saralsms.com
