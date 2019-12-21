@@ -1,5 +1,7 @@
 <?php
 
+namespace SaralSMS;
+
 final class Report extends Client
 {
     public function getReportById()

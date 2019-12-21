@@ -1,5 +1,9 @@
 <?php
 
+namespace SaralSMS;
+
+use Exception;
+
 final class Account extends Client
 {
     /**

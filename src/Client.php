@@ -1,5 +1,7 @@
 <?php
 
+namespace SaralSMS;
+
 class Client
 {
     /**
