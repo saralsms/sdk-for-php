@@ -63,7 +63,26 @@ This will return the user profile on behalf of a authenticated token.
 $client->account->profile();
 ```
 
+### Report for MessageID
+This will get message report based on Message ID.
+     
+```php
+$client->report->getReportById(1234);
+```
 
+### Report for Identifier
+This will get message report based on Message identifier.
+     
+```php
+$client->report->getReportByIdentifier('d2e7......12k1');
+```
+
+### Report pages
+This will get message report based on page number. Defaults to page `1`.
+     
+```php
+$client->report->getReports(1);
+```
 
 [Live Credentials]: https://app.saralsms.com
 [Sandbox Credentials]: https://demo.saralsms.com
