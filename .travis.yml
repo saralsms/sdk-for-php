@@ -15,7 +15,7 @@ jobs:
       language: php
       os: linux
       dist: precise
-      php: 5.3.2
+      php: 5.3
       script:
         - composer self-update
         - mkdir ./composer-test/test-53 && cd ./composer-test/test-53
