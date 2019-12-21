@@ -20,7 +20,7 @@ We use the GitHub issues for tracking bugs and feature requests and address them
 
 ## Quick Examples
 
-### Create an Amazon S3 client
+### Create an SaralSMS client
 
 ```php
 // require the composer autoloader.
@@ -28,7 +28,7 @@ require 'vendor/autoload.php';
 
 use SaralSMS\Client;
 
-// Instantiate an Amazon S3 client.
+// instantiate a SaralSMS client.
 $client = new Client(array(
     'token' => 'f9c6......55c1',
     'is_sandbox'  => true // if you are testing
