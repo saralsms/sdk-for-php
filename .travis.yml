@@ -1,20 +1,59 @@
-os: linux
-language: php
-php:
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
-  - 7.4
+#os: linux
+#language: php
+#php:
+#  - 5.5
+#  - 5.6
+#  - 7.0
+#  - 7.1
+#  - 7.2
+#  - 7.3
+#  - 7.4
 
-before_script:
-  - composer self-update
-  - composer install --dev --optimize-autoloader --no-interaction
+jobs:
+  include:
+    - stage: test-53
+      language: php
+      os: linux
+      dist: precise
+      php: 5.3.2
+      script:
+        - composer self-update
+        - mkdir ./composer-test/test-53 && cd ./composer-test/test-53
+        - composer init --no-interaction
+    - stage: test-54
+      language: php
+      os: linux
+      dist: trusty
+      php: 5.4.0
+      script:
+        - composer self-update
+        - mkdir ./composer-test/test-54 && cd ./composer-test/test-54
+        - composer init --no-interaction
+    - stage: test-55
+      language: php
+      os: linux
+      dist: trusty
+      php: 5.5.0
+      script:
+        - composer self-update
+        - mkdir ./composer-test/test-55 && cd ./composer-test/test-55
+        - composer init --no-interaction
+    - stage: test-56
+      language: php
+      os: linux
+      dist: xenial
+      php: 5.6.0
+      script:
+        - composer self-update
+        - mkdir ./composer-test/test-56 && cd ./composer-test/test-56
+        - composer init --no-interaction
 
-script:
-  - ./vendor/bin/phpunit
+#before_script:
+#  - composer self-update
+#  - composer install --dev --optimize-autoloader --no-interaction
+#
+#script:
+#  - ./vendor/bin/phpunit
 
 notifications:
   email:
