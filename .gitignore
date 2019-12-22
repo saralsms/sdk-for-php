@@ -50,5 +50,6 @@ ehthumbs_vista.db
 /.env
 /phpunit.xml
 
-# ignore cache files
+# ignore cache files and directories
 /*.cache
+/composer-test

@@ -1,21 +1,24 @@
-#os: linux
-#language: php
-#php:
-#  - 5.5
-#  - 5.6
-#  - 7.0
-#  - 7.1
-#  - 7.2
-#  - 7.3
-#  - 7.4
-
 jobs:
   include:
-    - stage: test-53
-      name: "Test in PHP 5.3"
+    - stage: feature-test
+      name: "Feature Test"
+      os: linux
+      dist: bionic
       language: php
+      php: 7.4
+      before_script:
+        - php --version
+        - phpenv config-rm xdebug.ini
+        - composer self-update
+        - composer install --dev --optimize-autoloader --no-interaction
+      script:
+        - cp ./phpunit.default.xml phpunit.xml
+        - ./vendor/bin/phpunit
+    - stage: install-test-53
+      name: "Test in PHP 5.3"
       os: linux
       dist: precise
+      language: php
       php: 5.3
       before_script:
         - php --version
@@ -23,14 +26,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-53
-        - mkdir ./composer-test/test-53 && cd ./composer-test/test-53
+        - mkdir -p ./composer-test/test-53 && cd ./composer-test/test-53
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-54
+    - stage: install-test-54
       name: "Test in PHP 5.4"
-      language: php
       os: linux
       dist: trusty
+      language: php
       php: 5.4
       before_script:
         - php --version
@@ -38,14 +41,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-54
-        - mkdir ./composer-test/test-54 && cd ./composer-test/test-54
+        - mkdir -p ./composer-test/test-54 && cd ./composer-test/test-54
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-55
+    - stage: install-test-55
       name: "Test in PHP 5.5"
-      language: php
       os: linux
       dist: trusty
+      language: php
       php: 5.5
       before_script:
         - php --version
@@ -53,14 +56,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-55
-        - mkdir ./composer-test/test-55 && cd ./composer-test/test-55
+        - mkdir -p ./composer-test/test-55 && cd ./composer-test/test-55
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-56
+    - stage: install-test-56
       name: "Test in PHP 5.6"
-      language: php
       os: linux
       dist: xenial
+      language: php
       php: 5.6
       before_script:
         - php --version
@@ -68,14 +71,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-56
-        - mkdir ./composer-test/test-56 && cd ./composer-test/test-56
+        - mkdir -p ./composer-test/test-56 && cd ./composer-test/test-56
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-70
+    - stage: install-test-70
       name: "Test in PHP 7.0"
-      language: php
       os: linux
       dist: xenial
+      language: php
       php: 7.0
       before_script:
         - php --version
@@ -83,14 +86,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-70
-        - mkdir ./composer-test/test-70 && cd ./composer-test/test-70
+        - mkdir -p ./composer-test/test-70 && cd ./composer-test/test-70
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-71
+    - stage: install-test-71
       name: "Test in PHP 7.1"
-      language: php
       os: linux
       dist: xenial
+      language: php
       php: 7.1
       before_script:
         - php --version
@@ -98,14 +101,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-71
-        - mkdir ./composer-test/test-71 && cd ./composer-test/test-71
+        - mkdir -p ./composer-test/test-71 && cd ./composer-test/test-71
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-72
+    - stage: install-test-72
       name: "Test in PHP 7.2"
-      language: php
       os: linux
       dist: xenial
+      language: php
       php: 7.2
       before_script:
         - php --version
@@ -113,14 +116,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-72
-        - mkdir ./composer-test/test-72 && cd ./composer-test/test-72
+        - mkdir -p ./composer-test/test-72 && cd ./composer-test/test-72
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-73
+    - stage: install-test-73
       name: "Test in PHP 7.3"
-      language: php
       os: linux
       dist: xenial
+      language: php
       php: 7.3
       before_script:
         - php --version
@@ -128,14 +131,14 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-73
-        - mkdir ./composer-test/test-73 && cd ./composer-test/test-73
+        - mkdir -p ./composer-test/test-73 && cd ./composer-test/test-73
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
-    - stage: test-74
+    - stage: install-test-74
       name: "Test in PHP 7.4"
-      language: php
       os: linux
       dist: bionic
+      language: php
       php: 7.4
       before_script:
         - php --version
@@ -143,7 +146,7 @@ jobs:
       script:
         - composer self-update
         - rm -rf ./composer-test/test-74
-        - mkdir ./composer-test/test-74 && cd ./composer-test/test-74
+        - mkdir -p ./composer-test/test-74 && cd ./composer-test/test-74
         - composer init --no-interaction
         - composer require saralsms/sdk-for-php
 
@@ -152,15 +155,6 @@ branches:
     - master
     - develop
     - test
-    - travis-test
-
-
-#before_script:
-#  - composer self-update
-#  - composer install --dev --optimize-autoloader --no-interaction
-#
-#script:
-#  - ./vendor/bin/phpunit
 
 notifications:
   email:
