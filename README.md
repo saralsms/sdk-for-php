@@ -84,6 +84,17 @@ This will get message report based on page number. Defaults to page `1`.
 $client->report->getReports(1);
 ```
 
+## Contributors
+* **[Madan Sapkota](https://github.com/sapkotamadan)**
+    * Role: Owner / Developer
+    * Task: "*"
+* **[Dilip Bhattarai](https://github.com/vectrobyte)**
+    * Role: Developer
+    * Task: Web application development using VueJS / ReactJS / TypeScript etc.
+* **[Anil Shrestha](https://github.com/codebyanil)**
+    * Role: Developer
+    * Task: Web backend development using PHP/MySQL, Laravel etc.
+
 [Live Credentials]: https://app.saralsms.com
 [Sandbox Credentials]: https://demo.saralsms.com
 
