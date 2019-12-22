@@ -10,7 +10,7 @@ jobs:
         - php --version
         - phpenv config-rm xdebug.ini
         - composer self-update
-        - composer install --dev --optimize-autoloader --no-interaction
+        - composer install --optimize-autoloader --no-interaction
       script:
         - cp ./phpunit.default.xml phpunit.xml
         - ./vendor/bin/phpunit
