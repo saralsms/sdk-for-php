@@ -2,12 +2,18 @@
 
 namespace Tests;
 
+use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 use SaralSMS\Client;
 use SaralSMS\Exception\SaralSMSException;
 
 class ParentTestCase extends TestCase
 {
+    /**
+     * @var Factory $faker
+     */
+    protected $faker;
+
     /**
      * @var Client $client
      */
@@ -31,5 +37,8 @@ class ParentTestCase extends TestCase
             'token' => $token,
             'is_sandbox' => true,
         ]);
+
+        // init faker
+        $this->faker = Factory::create();
     }
 }
