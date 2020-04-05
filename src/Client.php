@@ -4,11 +4,10 @@ namespace SaralSMS;
 
 use SaralSMS\Account\Account;
 use SaralSMS\Exception\SaralSMSException;
-use SaralSMS\Helper\HttpRequest;
 use SaralSMS\Message\Message;
 use SaralSMS\Report\Report;
 
-class Client extends HttpRequest
+class Client
 {
     /**
      * @var Account $account
@@ -46,7 +45,7 @@ class Client extends HttpRequest
     {
         // token required for authorization
         if (isset($configs['token']) && !empty($configs['token'])) {
-            $this->apiToken = $configs['token'];
+            putenv('SARALSMS_API_TOKEN=' . $configs['token']);
         } else {
             throw new SaralSMSException('The API token is required.');
         }
@@ -59,7 +58,7 @@ class Client extends HttpRequest
         }
 
         // set base url
-        $this->baseUrl = 'https://' . $cname . '.saralsms.com/v1/';
+        putenv('SARALSMS_BASE_URL=' . 'https://' . $cname . '.saralsms.com/v1/');
 
         // init the modules
         $this->account = new Account;
