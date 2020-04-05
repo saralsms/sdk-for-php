@@ -4,15 +4,9 @@ namespace SaralSMS;
 
 use SaralSMS\Exception\SaralSMSException;
 use SaralSMS\Helper\HttpRequest;
-use SaralSMS\Helper\Loader;
 
 class Base extends HttpRequest
 {
-    /**
-     * @var Loader $loader
-     */
-    protected $loader;
-
     /**
      * @var array $authorization
      */
@@ -20,15 +14,11 @@ class Base extends HttpRequest
 
     /**
      * @param array $configs
+     *
      * @throws SaralSMSException
      */
     public function init($configs)
     {
-        // init env loader
-        if (!class_exists('Loader')) {
-            $this->loader = new Loader();
-        }
-
         // token required for authorization
         if (isset($configs['token']) && !empty($configs['token'])) {
             $this->authorization = array('token' => $configs['token']);
@@ -38,9 +28,9 @@ class Base extends HttpRequest
 
         // optional sandbox mode
         if (isset($configs['is_sandbox']) && $configs['is_sandbox']) {
-            $this->baseUrl = $this->loader->getEnv('SARALSMS_SANDBOX_URL');
+            $this->baseUrl = 'https://sandboxapi.saralsms.com/v1/';
         } else {
-            $this->baseUrl = $this->loader->getEnv('SARALSMS_LIVE_URL');
+            $this->baseUrl = 'https://api.saralsms.com/v1/';
         }
     }
 }
