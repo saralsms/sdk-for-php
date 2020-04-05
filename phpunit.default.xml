@@ -4,6 +4,8 @@
   <php>
     <!-- specify the sandbox token -->
     <server name="SARALSMS_API_TOKEN" value=""/>
+    <server name="SARALSMS_MESSAGE_ID" value=""/>
+    <server name="SARALSMS_MESSAGE_IDENTIFIER" value=""/>
   </php>
 
   <testsuites>
