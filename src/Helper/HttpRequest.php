@@ -41,9 +41,9 @@ class HttpRequest
 
         // init default headers
         $headers = array(
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'X-API-Token' => $this->apiToken,
+            'Accept: application/json',
+            'Content-Type: application/json',
+            'X-API-Token: ' . $this->apiToken,
         );
 
         if ($method === 'POST') {
