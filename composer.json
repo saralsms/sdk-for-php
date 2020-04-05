@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "SaralSMS Team",
+      "name": "SaralSMS",
       "homepage": "https://saralsms.com"
     }
   ],
@@ -31,7 +31,7 @@
     "ext-openssl": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.5"
+    "phpunit/phpunit": "^9.1"
   },
   "config": {
     "discard-changes": true,

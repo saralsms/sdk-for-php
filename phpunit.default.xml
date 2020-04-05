@@ -6,7 +6,7 @@
     <server name="SARALSMS_SANDBOX_URL"
             value="https://sandboxapi.saralsms.com/v1/"/>
     <!-- specify the sandbox token -->
-    <server name="SARALSMS_TOKEN" value=""/>
+    <server name="SARALSMS_API_TOKEN" value=""/>
   </php>
 
   <testsuites>
