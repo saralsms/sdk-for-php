@@ -2,17 +2,22 @@
 
 namespace Tests\Unit\Account;
 
+use SaralSMS\Exception\SaralSMSException;
 use Tests\ParentTestCase;
 
 class AccountProfileTest extends ParentTestCase
 {
+    /**
+     * @throws SaralSMSException
+     */
     public function test_can_get_account_profile()
     {
-        $this->assertEquals(1, 1);
-    }
+        $profile = $this->client->account->profile();
 
-    public function test_cannot_get_account_profile()
-    {
-        $this->assertEquals(1, 1);
+        // must be an object
+        $this->assertIsObject($profile);
+
+        // must contains id and int
+        $this->assertObjectHasAttribute('id', $profile);
     }
 }
