@@ -16,6 +16,14 @@ class HttpRequest
      */
     protected $apiToken;
 
+    public function __construct()
+    {
+        // init base url
+        $this->baseUrl = getenv('SARALSMS_BASE_URL', true);
+        // init API token
+        $this->apiToken = getenv('SARALSMS_API_TOKEN', true);
+    }
+
     /**
      * create cURL client and make the http request.
      *
@@ -57,7 +65,7 @@ class HttpRequest
         curl_setopt($curl, CURLOPT_TIMEOUT, 60);
 
         // apply headers
-        curl_setopt($curl, CURLOPT_HTTPHEADER, implode(': ', $headers));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
         // grab the content
         $response = curl_exec($curl);
