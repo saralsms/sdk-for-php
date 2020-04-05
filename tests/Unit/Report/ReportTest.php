@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Report;
+namespace Tests\Unit\Report;
 
 use Tests\ParentTestCase;
 
