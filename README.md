@@ -77,15 +77,8 @@ This will get message report based on Message identifier.
 $client->report->getReportByIdentifier('d2e7......12k1');
 ```
 
-### Report pages
-This will get message report based on page number. Defaults to page `1`.
-     
-```php
-$client->report->getReports(1);
-```
-
 ## Contributors
-* **[Madan Sapkota](https://github.com/sapkotamadan)**
+* **[Madan Sapkota](https://github.com/remotemerge)**
     * Role: Owner / Developer
     * Task: "*"
 * **[Dilip Bhattarai](https://github.com/vectrobyte)**
