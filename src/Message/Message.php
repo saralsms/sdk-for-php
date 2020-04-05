@@ -3,20 +3,19 @@
 namespace SaralSMS\Message;
 
 use Exception;
-use SaralSMS\Base;
 use SaralSMS\Exception\SaralSMSException;
+use SaralSMS\Helper\HttpRequest;
 
-final class Message extends Base implements IMessage
+final class Message extends HttpRequest implements IMessage
 {
     /**
-     * --------------------------------------------------
      * This will send the message to single number.
-     * --------------------------------------------------
+     *
      * @param string $number
      * @param string $message
+     *
      * @return object
      * @throws SaralSMSException
-     * --------------------------------------------------
      */
     public function sendMessage($number, $message)
     {
@@ -31,13 +30,13 @@ final class Message extends Base implements IMessage
         }
 
         // init required params
-        $params = array_merge($this->authorization, array(
-            'to' => $number,
-            'text' => $message
-        ));
+        $params = array(
+            'recipients' => array($number),
+            'body' => $message,
+        );
 
         try {
-            $request = $this->request('POST', 'message/send-message', $params);
+            $request = $this->request('POST', 'messages/send-bulk-sms', $params);
             return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
@@ -45,14 +44,13 @@ final class Message extends Base implements IMessage
     }
 
     /**
-     * --------------------------------------------------
      * This will send the message to multiple number.
-     * --------------------------------------------------
+     *
      * @param array $numbers
      * @param string $message
+     *
      * @return object
      * @throws SaralSMSException
-     * --------------------------------------------------
      */
     public function sendBulkMessage($numbers, $message)
     {
@@ -67,13 +65,13 @@ final class Message extends Base implements IMessage
         }
 
         // init required params
-        $params = array_merge($this->authorization, array(
-            'to' => $numbers,
-            'text' => $message
-        ));
+        $params = array(
+            'recipients' => $numbers,
+            'body' => $message,
+        );
 
         try {
-            $request = $this->request('POST', 'message/send-bulk-message', $params);
+            $request = $this->request('POST', 'messages/send-bulk-sms', $params);
             return json_decode($request, false);
         } catch (Exception $e) {
             throw new SaralSMSException($e->getMessage(), $e->getCode());
