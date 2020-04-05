@@ -14,6 +14,6 @@ class AccountBalanceTest extends ParentTestCase
     {
         $balance = $this->client->account->balance();
         // must be an object
-        $this->assertIsInt($balance);
+        $this->assertIsNumeric($balance);
     }
 }
