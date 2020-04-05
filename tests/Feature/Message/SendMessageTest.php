@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Account;
+namespace Tests\Feature\Message;
 
 use Tests\ParentTestCase;
 
