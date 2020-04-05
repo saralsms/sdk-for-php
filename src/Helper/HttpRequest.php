@@ -12,15 +12,19 @@ class HttpRequest
     protected $baseUrl;
 
     /**
-     * --------------------------------------------------
+     * @var string $apiToken
+     */
+    protected $apiToken;
+
+    /**
      * create cURL client and make the http request.
-     * --------------------------------------------------
-     * @param $method
-     * @param $route
+     *
+     * @param string $method
+     * @param string $route
      * @param array $params
+     *
      * @return string
      * @throws SaralSMSException
-     * --------------------------------------------------
      */
     protected function request($method, $route, $params = array())
     {
@@ -28,15 +32,16 @@ class HttpRequest
         $curl = curl_init();
 
         // init default headers
-        $headers = array('Accept', 'application/json');
+        $headers = array(
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'X-API-Token' => $this->apiToken,
+        );
 
         if ($method === 'POST') {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
             curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $route);
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-
-            // custom headers
-            $headers['Content-Type'] = array('Content-Type: application/json');
         } else {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
             curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $route . '?' . http_build_query($params));
