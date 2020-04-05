@@ -96,7 +96,7 @@ $client->report->getReports(1);
     * Task: Web backend development using PHP/MySQL, Laravel etc.
 
 [Live Credentials]: https://app.saralsms.com
-[Sandbox Credentials]: https://demo.saralsms.com
+[Sandbox Credentials]: https://sandbox.saralsms.com
 
 [composer]: http://getcomposer.org
 [packagist]: http://packagist.org
