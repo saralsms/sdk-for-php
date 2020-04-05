@@ -3,7 +3,8 @@
 
   <php>
     <!-- specify the sandbox url -->
-    <server name="SARALSMS_SANDBOX_URL" value="https://devapi.saralsms.com/v1/"/>
+    <server name="SARALSMS_SANDBOX_URL"
+            value="https://sandboxapi.saralsms.com/v1/"/>
     <!-- specify the sandbox token -->
     <server name="SARALSMS_TOKEN" value=""/>
   </php>
