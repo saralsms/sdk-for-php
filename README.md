@@ -42,11 +42,29 @@ This will send the message to single number.
 $client->message->sendMessage('9841xx58', 'Text message to single number.');
 ```
 
+Sample Response
+
+```json
+{
+    "message": "The message has been queued for delivery.",
+    "identifier": "1586148838....c662b1d290"
+}
+```
+
 ### Send Bulk Message
 This will send the message to multiple number.
 
 ```php
 $client->message->sendBulkMessage(array('9841xx58', '9803xx65'), 'Text message to multiple number.');
+```
+
+Sample Response
+
+```json
+{
+    "message": "The message has been queued for delivery.",
+    "identifier": "15861488....587ff8be6c84fe5bc"
+}
 ```
 
 ### Account Balance
@@ -56,11 +74,49 @@ This will return the account balance on behalf of a authenticated token.
 $client->account->balance();
 ```
 
+Sample Response
+```json
+4996.25
+```
+
 ### Account Profile
 This will return the user profile on behalf of a authenticated token.
      
 ```php
 $client->account->profile();
+```
+
+Sample Response
+```json
+{
+    "id": 4,
+    "role_id": 2,
+    "provider": "SYSTEM",
+    "organization_name": "John, Inc.",
+    "registration_number": "2345678",
+    "pan_number": 324567,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john@doe.com",
+    "token": "69d8xxx34ba8",
+    "phone": "9817xxx124",
+    "address": "Kathmandu, Nepal",
+    "photo_url": "https://sandboxcdn.saralsms.com/1578888813_5e124812771c4_82481270.png",
+    "description": null,
+    "remark": null,
+    "last_online": "1 week ago",
+    "is_active": 1,
+    "is_email_verified": 1,
+    "is_phone_verified": 0,
+    "is_kyc_verified": 1,
+    "created_at": "2020-01-07T10:08:18.000000Z",
+    "sender_id_ntc": "SaralSMS",
+    "sender_id_ncell": "SaralSMS",
+    "sender_id_smartcell": "SaralSMS",
+    "amount": "4996.25",
+    "rate": "1.25",
+    "role": "USER_ADMIN"
+}
 ```
 
 ### Report for MessageID
@@ -74,19 +130,41 @@ $client->report->getReportById(1234);
 This will get message report based on Message identifier.
      
 ```php
-$client->report->getReportByIdentifier('d2e7......12k1');
+$client->report->getReportByIdentifier('1586148875eb9...f8be6c84fe5bc');
 ```
 
-## Contributors
-* **[Madan Sapkota](https://github.com/remotemerge)**
-    * Role: Owner / Developer
-    * Task: "*"
-* **[Dilip Bhattarai](https://github.com/vectrobyte)**
-    * Role: Developer
-    * Task: Web application development using VueJS / ReactJS / TypeScript etc.
-* **[Anil Shrestha](https://github.com/codebyanil)**
-    * Role: Developer
-    * Task: Web backend development using PHP/MySQL, Laravel etc.
+Sample Response
+
+```json
+{
+    "identifier": "1586148875eb9...f8be6c84fe5bc",
+    "body": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    "sender_name": "John Doe",
+    "queued_at": "2020-04-06 04:54:35",
+    "created_at": "2020-04-06T04:54:35.000000Z",
+    "contacts": [
+        {
+            "name": null,
+            "phone": "981xxx6123"
+        },
+        ...
+    ],
+    "recipients": [
+        {
+            "id": 55,
+            "identifier": "1586148875eb9....f8be6c84fe5bc",
+            "phone": "9817...123",
+            "receiver_name": null,
+            "name": null,
+            "status": "DELIVERED",
+            "created_at": "2020-04-06T04:54:35.000000Z",
+            "status_date": "2020-04-06 04:54:35",
+            "remark": null
+        },
+        ...
+    ]
+}
+```
 
 [Live Credentials]: https://app.saralsms.com
 [Sandbox Credentials]: https://sandbox.saralsms.com
