@@ -14,21 +14,6 @@ jobs:
       script:
         - cp ./phpunit.default.xml phpunit.xml
         - ./vendor/bin/phpunit
-    - stage: install-test-53
-      name: "Test in PHP 5.3"
-      os: linux
-      dist: precise
-      language: php
-      php: 5.3
-      before_script:
-        - php --version
-        - phpenv config-rm xdebug.ini
-      script:
-        - composer self-update
-        - rm -rf ./composer-test/test-53
-        - mkdir -p ./composer-test/test-53 && cd ./composer-test/test-53
-        - composer init --no-interaction
-        - composer require saralsms/sdk-for-php
     - stage: install-test-54
       name: "Test in PHP 5.4"
       os: linux

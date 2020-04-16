@@ -30,10 +30,10 @@ final class Message extends HttpRequest implements IMessage
         }
 
         // init required params
-        $params = array(
-            'recipients' => array($number),
+        $params = [
+            'recipients' => [$number],
             'body' => $message,
-        );
+        ];
 
         try {
             $request = $this->request('POST', 'messages/send-bulk-sms', $params);
@@ -65,10 +65,10 @@ final class Message extends HttpRequest implements IMessage
         }
 
         // init required params
-        $params = array(
+        $params = [
             'recipients' => $numbers,
             'body' => $message,
-        );
+        ];
 
         try {
             $request = $this->request('POST', 'messages/send-bulk-sms', $params);

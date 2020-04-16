@@ -34,17 +34,17 @@ class HttpRequest
      * @return string
      * @throws SaralSMSException
      */
-    protected function request($method, $route, $params = array())
+    protected function request($method, $route, $params = [])
     {
         // create a new cURL resource
         $curl = curl_init();
 
         // init default headers
-        $headers = array(
+        $headers = [
             'Accept: application/json',
             'Content-Type: application/json',
             'X-API-Token: ' . $this->apiToken,
-        );
+        ];
 
         if ($method === 'POST') {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
