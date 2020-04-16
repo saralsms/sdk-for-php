@@ -4,7 +4,7 @@ The **SaralSMS SDK for PHP** makes it easy for developers to access SaralSMS API
 
 # Getting Started
 1. **Sign up for SaralSMS** – Before you begin, you need to sign up for an SaralSMS account and retrieve your [Live Credentials] or [Sandbox Credentials].
-2. **Minimum requirements** – To run the SDK, your system will need to meet the minimum requirements, including having **PHP >= 5.3.2**. We highly recommend having it compiled with the cURL extension and cURL compiled with a TLS backend (e.g., NSS or OpenSSL).
+2. **Minimum requirements** – To run the SDK, your system will need to meet the minimum requirements, including having **PHP >= 5.4**. We highly recommend having it compiled with the cURL extension and cURL compiled with a TLS backend (e.g., NSS or OpenSSL).
 
 # Installation
 **Install the SDK** – Using [Composer] is the recommended way to install the SaralSMS SDK for PHP. The SDK is available via [Packagist] under the [`saralsms/sdk-for-php`][install-packagist] package.
@@ -29,10 +29,10 @@ require 'vendor/autoload.php';
 use SaralSMS\Client;
 
 // instantiate a SaralSMS client.
-$client = new Client(array(
+$client = new Client([
     'token' => 'f9c6......55c1',
     'is_sandbox'  => false // set `true` if you are testing
-));
+]);
 ```
 
 ### Send Message
@@ -55,7 +55,7 @@ Sample Response
 This will send the message to multiple number.
 
 ```php
-$client->message->sendBulkMessage(array('9841xx58', '9803xx65'), 'Text message to multiple number.');
+$client->message->sendBulkMessage(['9841xx58', '9803xx65'], 'Text message to multiple number.');
 ```
 
 Sample Response
