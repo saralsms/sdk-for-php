@@ -3,7 +3,6 @@
 namespace SaralSMS;
 
 use SaralSMS\Credit\Credit;
-use SaralSMS\Exception\SaralSMSException;
 use SaralSMS\Message\Message;
 use SaralSMS\Report\Report;
 
@@ -12,54 +11,25 @@ class Client
     use Credit, Message, Report;
 
     /**
-     * @var Credit $account
+     * @var string $baseUrl
      */
-    public $account;
+    protected $baseUrl;
 
     /**
-     * @var Message $message
+     * @var string $authToken
      */
-    public $message;
+    protected $authToken;
 
     /**
-     * @var Report $report
-     */
-    public $report;
-
-    /**
-     * @param array $configs
+     * Client constructor.
      *
-     * @throws SaralSMSException
+     * @param string $authToken
      */
-    public function __construct(array $configs)
+    public function __construct(string $authToken)
     {
-        // init the configs
-        $this->init($configs);
-    }
-
-    /**
-     * @param array $configs
-     *
-     * @return void
-     * @throws SaralSMSException
-     */
-    public function init($configs)
-    {
-        // token required for authorization
-        if (isset($configs['token']) && !empty($configs['token'])) {
-            putenv('SARALSMS_API_TOKEN=' . $configs['token']);
-        } else {
-            throw new SaralSMSException('The API token is required.');
-        }
-
-        // check integration mode
-        if (isset($configs['is_sandbox']) && $configs['is_sandbox']) {
-            $cname = 'sandboxapi';
-        } else {
-            $cname = 'api';
-        }
-
-        // set base url
-        putenv('SARALSMS_BASE_URL=' . 'https://' . $cname . '.saralsms.com/v1/');
+        // set API base url
+        $this->baseUrl = 'https://cloudapi.saralsms.com/v1';
+        // init the token
+        $this->authToken = $authToken;
     }
 }
