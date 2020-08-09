@@ -24,10 +24,12 @@ class Client
     {
         // set API base url
         $baseUrl = 'https://cloudapi.saralsms.com/v1';
+
         // init Guzzle client
         $this->guzzle = new \GuzzleHttp\Client([
             'base_uri' => $baseUrl,
             'headers' => [
+                'User-Agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'X-Auth-Token' => $authToken,
