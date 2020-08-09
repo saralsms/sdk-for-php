@@ -2,18 +2,34 @@
 
 namespace Tests\Unit\Account;
 
-use SaralSMS\Exception\SaralSMSException;
 use Tests\ParentTestCase;
 
 class AccountBalanceTest extends ParentTestCase
 {
     /**
-     * @throws SaralSMSException
+     * @covers \SaralSMS\Credit\Credit::getCredits
      */
-    public function test_can_get_account_balance()
+    public function test_can_get_account_balance(): void
     {
-        $balance = $this->client->account->balance();
-        // must be an object
-        $this->assertIsNumeric($balance);
+        $response = $this->client->getCredits();
+        self::assertIsObject($response);
+    }
+
+    /**
+     * @covers \SaralSMS\Credit\Credit::getCredits
+     */
+    public function test_credit_is_numeric(): void
+    {
+        $response = $this->client->getCredits();
+        self::assertIsNumeric($response->credit);
+    }
+
+    /**
+     * @covers \SaralSMS\Credit\Credit::getCredits
+     */
+    public function test_total_sent_is_numeric(): void
+    {
+        $response = $this->client->getCredits();
+        self::assertIsNumeric($response->total_sent);
     }
 }
