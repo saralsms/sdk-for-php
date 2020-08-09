@@ -32,6 +32,9 @@ class Client
                 'Content-Type' => 'application/json',
                 'X-Auth-Token' => $authToken,
             ],
+            'allow_redirects' => [
+                'protocols' => ['https'],
+            ],
         ]);
     }
 }
