@@ -23,11 +23,12 @@ class Client
     public function __construct(string $authToken)
     {
         // set API base url
-        $baseUrl = 'https://cloudapi.saralsms.com/v1';
+        $baseUrl = 'https://cloudapi.saralsms.com';
 
         // init Guzzle client
         $this->httpClient = new \GuzzleHttp\Client([
             'base_uri' => $baseUrl,
+            'http_errors' => false,
             'headers' => [
                 'User-Agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
                 'Accept' => 'application/json',
