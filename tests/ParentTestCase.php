@@ -19,6 +19,11 @@ class ParentTestCase extends TestCase
     protected $client;
 
     /**
+     * @var string $authToken
+     */
+    protected static $authToken;
+
+    /**
      * @var bool $isFireUp
      */
     private static $isFireUp = false;
@@ -30,9 +35,14 @@ class ParentTestCase extends TestCase
         if (!self::$isFireUp) {
             // init faker
             $this->faker = Factory::create();
+
+            // set auth token
+            self::$authToken = $_ENV['SARALSMS_AUTH_TOKEN'];
+
             self::$isFireUp = true;
         }
+
         // init saralsms client
-        $this->client = new Client('');
+        $this->client = new Client(self::$authToken);
     }
 }
