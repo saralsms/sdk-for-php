@@ -2,7 +2,7 @@
 
 namespace SaralSMS;
 
-use SaralSMS\Account\Account;
+use SaralSMS\Credit\Credit;
 use SaralSMS\Exception\SaralSMSException;
 use SaralSMS\Message\Message;
 use SaralSMS\Report\Report;
@@ -10,7 +10,7 @@ use SaralSMS\Report\Report;
 class Client
 {
     /**
-     * @var Account $account
+     * @var Credit $account
      */
     public $account;
 
@@ -61,7 +61,7 @@ class Client
         putenv('SARALSMS_BASE_URL=' . 'https://' . $cname . '.saralsms.com/v1/');
 
         // init the modules
-        $this->account = new Account;
+        $this->account = new Credit;
         $this->message = new Message;
         $this->report = new Report;
     }
