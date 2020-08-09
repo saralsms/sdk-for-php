@@ -4,9 +4,8 @@ namespace SaralSMS\Message;
 
 use Exception;
 use SaralSMS\Exception\SaralSMSException;
-use SaralSMS\Helper\HttpRequest;
 
-final class Message extends HttpRequest implements IMessage
+trait Message
 {
     /**
      * This will send the message to single number.

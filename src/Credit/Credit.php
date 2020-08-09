@@ -5,7 +5,7 @@ namespace SaralSMS\Credit;
 use Exception;
 use SaralSMS\Exception\SaralSMSException;
 
-final class Credit
+trait Credit
 {
     /**
      * This will return the account credits on behalf of

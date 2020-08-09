@@ -4,9 +4,8 @@ namespace SaralSMS\Report;
 
 use Exception;
 use SaralSMS\Exception\SaralSMSException;
-use SaralSMS\Helper\HttpRequest;
 
-final class Report extends HttpRequest implements IReport
+trait Report
 {
     /**
      * This will get message report based on Message ID.
