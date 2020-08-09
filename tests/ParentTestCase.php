@@ -5,7 +5,6 @@ namespace Tests;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 use SaralSMS\Client;
-use SaralSMS\Exception\SaralSMSException;
 
 class ParentTestCase extends TestCase
 {
@@ -17,28 +16,23 @@ class ParentTestCase extends TestCase
     /**
      * @var Client $client
      */
-    protected Client $client;
+    protected $client;
 
     /**
-     * @throws SaralSMSException
+     * @var bool $isFireUp
      */
+    private static $isFireUp = false;
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        if (getenv('SARALSMS_API_TOKEN')) {
-            $token = getenv('SARALSMS_API_TOKEN');
-        } else {
-            $token = $_SERVER['SARALSMS_API_TOKEN'];
+        if (!self::$isFireUp) {
+            // init faker
+            $this->faker = Factory::create();
+            self::$isFireUp = true;
         }
-
-        // init the client
-        $this->client = new Client([
-            'token' => $token,
-            'is_sandbox' => true,
-        ]);
-
-        // init faker
-        $this->faker = Factory::create();
+        // init saralsms client
+        $this->client = new Client('');
     }
 }
