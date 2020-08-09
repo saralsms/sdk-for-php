@@ -2,24 +2,16 @@
 
 namespace SaralSMS\Credit;
 
-use Exception;
-use SaralSMS\Exception\SaralSMSException;
-
 trait Credit
 {
     /**
      * This will return the account credits on behalf of
      * a authenticated token.
      * @return object
-     * @throws SaralSMSException
      */
-    public function getCredits()
+    public function getCredits(): object
     {
-        try {
-            $response = $this->request('GET', 'auth/user-meta');
-            return json_decode($response, false)->amount;
-        } catch (Exception $e) {
-            throw new SaralSMSException($e->getMessage(), $e->getCode());
-        }
+        $response = $this->httpClient->request('GET', '/v1/credit');
+        return json_decode($response->getBody(), false);
     }
 }
