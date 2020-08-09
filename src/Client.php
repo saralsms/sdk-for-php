@@ -11,9 +11,9 @@ class Client
     use Credit, Message, Report;
 
     /**
-     * @var \GuzzleHttp\Client $guzzle
+     * @var \GuzzleHttp\Client $httpClient
      */
-    protected $guzzle;
+    protected $httpClient;
 
     /**
      * Client constructor.
@@ -26,7 +26,7 @@ class Client
         $baseUrl = 'https://cloudapi.saralsms.com/v1';
 
         // init Guzzle client
-        $this->guzzle = new \GuzzleHttp\Client([
+        $this->httpClient = new \GuzzleHttp\Client([
             'base_uri' => $baseUrl,
             'headers' => [
                 'User-Agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
