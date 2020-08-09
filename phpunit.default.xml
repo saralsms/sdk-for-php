@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="./tests/bootstrap.php" colors="true">
-
-  <php>
-    <!-- specify the sandbox token -->
-    <server name="SARALSMS_API_TOKEN" value=""/>
-    <server name="SARALSMS_MESSAGE_ID" value=""/>
-    <server name="SARALSMS_MESSAGE_IDENTIFIER" value=""/>
-  </php>
-
   <testsuites>
     <testsuite name="unit">
       <directory suffix="Test.php">tests/Unit</directory>
@@ -18,7 +10,6 @@
       <exclude>tests/Unit</exclude>
     </testsuite>
   </testsuites>
-
   <filter>
     <whitelist>
       <directory suffix=".php">src</directory>
