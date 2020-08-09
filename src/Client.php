@@ -11,14 +11,9 @@ class Client
     use Credit, Message, Report;
 
     /**
-     * @var string $baseUrl
+     * @var \GuzzleHttp\Client $guzzle
      */
-    protected $baseUrl;
-
-    /**
-     * @var string $authToken
-     */
-    protected $authToken;
+    protected $guzzle;
 
     /**
      * Client constructor.
@@ -28,8 +23,15 @@ class Client
     public function __construct(string $authToken)
     {
         // set API base url
-        $this->baseUrl = 'https://cloudapi.saralsms.com/v1';
-        // init the token
-        $this->authToken = $authToken;
+        $baseUrl = 'https://cloudapi.saralsms.com/v1';
+        // init Guzzle client
+        $this->guzzle = new \GuzzleHttp\Client([
+            'base_uri' => $baseUrl,
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'X-Auth-Token' => $authToken,
+            ],
+        ]);
     }
 }
