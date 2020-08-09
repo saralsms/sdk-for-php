@@ -41,39 +41,4 @@ trait Message
             throw new SaralSMSException($e->getMessage(), $e->getCode());
         }
     }
-
-    /**
-     * This will send the message to multiple number.
-     *
-     * @param array $numbers
-     * @param string $message
-     *
-     * @return object
-     * @throws SaralSMSException
-     */
-    public function sendBulkMessage($numbers, $message)
-    {
-        // numbers array is required
-        if (!is_array($numbers) || empty($numbers)) {
-            throw new SaralSMSException('The numbers param is required.');
-        }
-
-        // message is required
-        if (empty($message)) {
-            throw new SaralSMSException('The message param is required.');
-        }
-
-        // init required params
-        $params = [
-            'recipients' => $numbers,
-            'body' => $message,
-        ];
-
-        try {
-            $request = $this->request('POST', 'messages/send-bulk-sms', $params);
-            return json_decode($request, false);
-        } catch (Exception $e) {
-            throw new SaralSMSException($e->getMessage(), $e->getCode());
-        }
-    }
 }

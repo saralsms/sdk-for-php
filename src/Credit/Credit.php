@@ -13,7 +13,7 @@ trait Credit
      * @return object
      * @throws SaralSMSException
      */
-    public function get()
+    public function getCredits()
     {
         try {
             $response = $this->request('GET', 'auth/user-meta');

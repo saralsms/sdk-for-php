@@ -9,6 +9,8 @@ use SaralSMS\Report\Report;
 
 class Client
 {
+    use Credit, Message, Report;
+
     /**
      * @var Credit $account
      */
@@ -59,10 +61,5 @@ class Client
 
         // set base url
         putenv('SARALSMS_BASE_URL=' . 'https://' . $cname . '.saralsms.com/v1/');
-
-        // init the modules
-        $this->account = new Credit;
-        $this->message = new Message;
-        $this->report = new Report;
     }
 }
