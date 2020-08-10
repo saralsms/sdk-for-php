@@ -3,8 +3,8 @@
 The **SaralSMS SDK for PHP** makes it easy for developers to access SaralSMS API service in their PHP code, and build robust SMS based applications and software.
 
 # Getting Started
-1. **Sign up for SaralSMS** – Before you begin, you need to sign up for an SaralSMS account and retrieve your [Live Credentials] or [Sandbox Credentials].
-2. **Minimum requirements** – To run the SDK, your system will need to meet the minimum requirements, including having **PHP >= 5.4**. We highly recommend having it compiled with the cURL extension and cURL compiled with a TLS backend (e.g., NSS or OpenSSL).
+1. **Sign up for SaralSMS** – Before you begin, you need to sign up for an SaralSMS account and retrieve your [Credentials].
+2. **Minimum requirements** – To run the SDK, your system will need to meet the minimum requirements, including having **PHP >= 7.2**. We highly recommend having it compiled with the cURL extension and cURL compiled with a TLS backend (e.g., NSS or OpenSSL).
 
 # Installation
 **Install the SDK** – Using [Composer] is the recommended way to install the SaralSMS SDK for PHP. The SDK is available via [Packagist] under the [`saralsms/sdk-for-php`][install-packagist] package.
@@ -29,145 +29,71 @@ require 'vendor/autoload.php';
 use SaralSMS\Client;
 
 // instantiate a SaralSMS client.
-$client = new Client([
-    'token' => 'f9c6......55c1',
-    'is_sandbox'  => false // set `true` if you are testing
-]);
+$client = new Client('f9c6......55c1');
 ```
 
 ### Send Message
-This will send the message to single number.
-
+This will send the message to one or multiple numbers in an array.
 ```php
-$client->message->sendMessage('9841xx58', 'Text message to single number.');
+$client->send(['9851xxx123', '9801xxx456'], 'This is test message from API.');
 ```
 
 Sample Response
-
 ```json
 {
-    "message": "The message has been queued for delivery.",
-    "identifier": "1586148838....c662b1d290"
+    "message": "2 messages queued for delivery."
 }
 ```
 
-### Send Bulk Message
-This will send the message to multiple number.
+### Credits
+This will return the available credits and total messages sent.
 
 ```php
-$client->message->sendBulkMessage(['9841xx58', '9803xx65'], 'Text message to multiple number.');
+$client->getCredits();
 ```
 
 Sample Response
-
 ```json
 {
-    "message": "The message has been queued for delivery.",
-    "identifier": "15861488....587ff8be6c84fe5bc"
+  "credits": 6584,
+  "total_sent": 3416
 }
 ```
 
-### Account Balance
-This will return the account balance on behalf of a authenticated token.
-
-```php
-$client->account->balance();
-```
-
-Sample Response
-```json
-4996.25
-```
-
-### Account Profile
-This will return the user profile on behalf of a authenticated token.
+### Reports
+This will return historical messages reports including networks, charges and status.
      
 ```php
-$client->account->profile();
+$pageNumber = 1;
+$client->getReports($pageNumber);
 ```
 
 Sample Response
 ```json
 {
-    "id": 4,
-    "role_id": 2,
-    "provider": "SYSTEM",
-    "organization_name": "John, Inc.",
-    "registration_number": "2345678",
-    "pan_number": 324567,
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john@doe.com",
-    "token": "69d8xxx34ba8",
-    "phone": "9817xxx124",
-    "address": "Kathmandu, Nepal",
-    "photo_url": "https://sandboxcdn.saralsms.com/1578888813_5e124812771c4_82481270.png",
-    "description": null,
-    "remark": null,
-    "last_online": "1 week ago",
-    "is_active": 1,
-    "is_email_verified": 1,
-    "is_phone_verified": 0,
-    "is_kyc_verified": 1,
-    "created_at": "2020-01-07T10:08:18.000000Z",
-    "sender_id_ntc": "SaralSMS",
-    "sender_id_ncell": "SaralSMS",
-    "sender_id_smartcell": "SaralSMS",
-    "amount": "4996.25",
-    "rate": "1.25",
-    "role": "USER_ADMIN"
+  "pages": 126,
+  "data": [
+    {
+      "id": 56480058,
+      "receiver": "9779851xxx123",
+      "network": "ntc",
+      "message": "Fruits are an excellent source of essential vitamins and minerals.",
+      "api_credit": "1",
+      "delivery_at": "2020-07-09 01:45:09"
+    },
+    {
+      "id": 56480057,
+      "receiver": "9779801xxx456",
+      "network": "ncell",
+      "message": "Vegetables are important sources of many nutrients, including potassium, dietary fiber.",
+      "api_credit": "1",
+      "delivery_at": "2020-07-08 07:25:31"
+    }
+  ]
 }
 ```
 
-### Report for MessageID
-This will get message report based on Message ID.
-     
-```php
-$client->report->getReportById(1234);
-```
-
-### Report for Identifier
-This will get message report based on Message identifier.
-     
-```php
-$client->report->getReportByIdentifier('1586148875eb9...f8be6c84fe5bc');
-```
-
-Sample Response
-
-```json
-{
-    "identifier": "1586148875eb9...f8be6c84fe5bc",
-    "body": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    "sender_name": "John Doe",
-    "queued_at": "2020-04-06 04:54:35",
-    "created_at": "2020-04-06T04:54:35.000000Z",
-    "contacts": [
-        {
-            "name": null,
-            "phone": "981xxx6123"
-        },
-        ...
-    ],
-    "recipients": [
-        {
-            "id": 55,
-            "identifier": "1586148875eb9....f8be6c84fe5bc",
-            "phone": "9817...123",
-            "receiver_name": null,
-            "name": null,
-            "status": "DELIVERED",
-            "created_at": "2020-04-06T04:54:35.000000Z",
-            "status_date": "2020-04-06 04:54:35",
-            "remark": null
-        },
-        ...
-    ]
-}
-```
-
-[Live Credentials]: https://app.saralsms.com
-[Sandbox Credentials]: https://sandbox.saralsms.com
+[Credentials]: https://app.saralsms.com
 
 [composer]: http://getcomposer.org
 [packagist]: http://packagist.org
