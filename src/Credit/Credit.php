@@ -11,7 +11,8 @@ trait Credit
      */
     public function getCredits(): object
     {
-        $response = $this->httpClient->request('GET', '/v1/credits');
+        $response = $this->client
+            ->request('GET', '/v1/credits');
         return json_decode($response->getBody(), false);
     }
 }
