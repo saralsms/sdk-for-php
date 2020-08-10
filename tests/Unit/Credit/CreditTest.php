@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit\Account;
+namespace Tests\Unit\Credit;
 
 use Tests\ParentTestCase;
 
-class AccountBalanceTest extends ParentTestCase
+class CreditTest extends ParentTestCase
 {
     /**
      * @covers \SaralSMS\Credit\Credit::getCredits
