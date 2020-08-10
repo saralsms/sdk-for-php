@@ -32,7 +32,7 @@ jobs:
         run: php --version && composer --version
 
       - name: Init composer
-        run: composer init --no-interaction
+        run: composer init --no-interaction --stability=dev
 
       - name: Install SaralSMS package
         run: composer require saralsms/sdk-for-php
