@@ -21,7 +21,7 @@ class CreditTest extends ParentTestCase
     public function test_object_key_credits_is_numeric(): void
     {
         $response = $this->client->getCredits();
-        self::assertIsNumeric($response->credits);
+        self::assertIsInt($response->credits);
     }
 
     /**
@@ -30,6 +30,6 @@ class CreditTest extends ParentTestCase
     public function test_object_key_total_sent_is_numeric(): void
     {
         $response = $this->client->getCredits();
-        self::assertIsNumeric($response->total_sent);
+        self::assertIsInt($response->total_sent);
     }
 }
