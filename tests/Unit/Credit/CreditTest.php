@@ -18,16 +18,16 @@ class CreditTest extends ParentTestCase
     /**
      * @covers \SaralSMS\Credit\Credit::getCredits
      */
-    public function test_credit_is_numeric(): void
+    public function test_object_key_credits_is_numeric(): void
     {
         $response = $this->client->getCredits();
-        self::assertIsNumeric($response->credit);
+        self::assertIsNumeric($response->credits);
     }
 
     /**
      * @covers \SaralSMS\Credit\Credit::getCredits
      */
-    public function test_total_sent_is_numeric(): void
+    public function test_object_key_total_sent_is_numeric(): void
     {
         $response = $this->client->getCredits();
         self::assertIsNumeric($response->total_sent);
