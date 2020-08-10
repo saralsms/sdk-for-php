@@ -25,7 +25,7 @@
     "verification"
   ],
   "require": {
-    "php": ">=7.2",
+    "php": "^7.2.5",
     "ext-curl": "*",
     "ext-json": "*",
     "ext-openssl": "*",
@@ -33,7 +33,7 @@
   },
   "require-dev": {
     "fzaninotto/faker": "^1.9",
-    "phpunit/phpunit": "^9.3",
+    "phpunit/phpunit": "^8.5",
     "vlucas/phpdotenv": "^5.1"
   },
   "config": {
