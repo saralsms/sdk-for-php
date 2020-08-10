@@ -11,7 +11,7 @@ class ParentTestCase extends TestCase
     /**
      * @var Factory $faker
      */
-    protected $faker;
+    protected static $faker;
 
     /**
      * @var Client $client
@@ -34,7 +34,7 @@ class ParentTestCase extends TestCase
 
         if (!self::$isFireUp) {
             // init faker
-            $this->faker = Factory::create();
+            self::$faker = Factory::create();
 
             // set auth token
             self::$authToken = $_ENV['SARALSMS_AUTH_TOKEN'];
