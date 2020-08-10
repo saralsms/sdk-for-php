@@ -2,9 +2,6 @@
 
 namespace SaralSMS\Report;
 
-use Exception;
-use SaralSMS\Exception\SaralSMSException;
-
 trait Report
 {
     /**
@@ -13,20 +10,14 @@ trait Report
      * @param int $pageNumber
      *
      * @return object
-     * @throws SaralSMSException
      */
-    public function getReports(int $pageNumber)
+    public function getReports(int $pageNumber = 1)
     {
-        // message ID is required
-        if (empty($messageId) || !is_int($messageId)) {
-            throw new SaralSMSException('The message ID param is required.');
-        }
+        // init page param
+        $params = ['page' => $pageNumber];
 
-        try {
-            $request = $this->request('GET', 'messages/' . $messageId);
-            return json_decode($request, false);
-        } catch (Exception $e) {
-            throw new SaralSMSException($e->getMessage(), $e->getCode());
-        }
+        $response = $this->client
+            ->request('GET', '/v1/reports?' . http_build_query($params));
+        return json_decode($response->getBody(), false);
     }
 }
