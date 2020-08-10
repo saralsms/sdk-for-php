@@ -6,15 +6,57 @@ use Tests\ParentTestCase;
 
 class ReportTest extends ParentTestCase
 {
-    public function test_can_get_report()
+    /**
+     * @covers \SaralSMS\Report\Report::getReports
+     */
+    public function test_can_get_reports(): void
     {
-        if (getenv('SARALSMS_MESSAGE_IDENTIFIER')) {
-            $identifier = getenv('SARALSMS_MESSAGE_IDENTIFIER');
-        } else {
-            $identifier = $_SERVER['SARALSMS_MESSAGE_IDENTIFIER'];
-        }
+        $response = $this->client->getReports();
+        self::assertIsObject($response);
+    }
 
-        $result = $this->client->report->getReportByIdentifier($identifier);
-        $this->assertObjectHasAttribute('recipients', $result);
+    /**
+     * @covers \SaralSMS\Report\Report::getReports
+     */
+    public function test_can_get_reports_with_page_number(): void
+    {
+        $response = $this->client->getReports(self::$faker->randomDigit);
+        self::assertIsObject($response);
+    }
+
+    /**
+     * @covers \SaralSMS\Report\Report::getReports
+     */
+    public function test_object_key_pages_is_numeric(): void
+    {
+        $response = $this->client->getReports();
+        self::assertIsInt($response->pages);
+    }
+
+    /**
+     * @covers \SaralSMS\Report\Report::getReports
+     */
+    public function test_object_key_pages_is_numeric_with_page_number(): void
+    {
+        $response = $this->client->getReports(self::$faker->randomDigit);
+        self::assertIsInt($response->pages);
+    }
+
+    /**
+     * @covers \SaralSMS\Report\Report::getReports
+     */
+    public function test_object_key_data_is_array(): void
+    {
+        $response = $this->client->getReports();
+        self::assertIsArray($response->data);
+    }
+
+    /**
+     * @covers \SaralSMS\Report\Report::getReports
+     */
+    public function test_object_key_data_is_array_with_page_number(): void
+    {
+        $response = $this->client->getReports(self::$faker->randomDigit);
+        self::assertIsArray($response->data);
     }
 }
