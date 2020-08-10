@@ -45,4 +45,14 @@ class SendTest extends ParentTestCase
         $response = $this->client->send($numbers, self::$faker->sentence);
         self::assertIsObject($response);
     }
+
+    /**
+     * @covers \SaralSMS\Message\Message::send
+     */
+    public function test_object_key_message_is_string(): void
+    {
+        $numbers = [$_ENV['TEST_MOBILE_NTC'], $_ENV['TEST_MOBILE_NCELL'], $_ENV['TEST_MOBILE_SMARTCELL']];
+        $response = $this->client->send($numbers, self::$faker->sentence);
+        self::assertIsString($response->message);
+    }
 }
