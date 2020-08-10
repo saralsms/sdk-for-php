@@ -35,4 +35,14 @@ class SendTest extends ParentTestCase
         $response = $this->client->send($numbers, self::$faker->sentence);
         self::assertIsObject($response);
     }
+
+    /**
+     * @covers \SaralSMS\Message\Message::send
+     */
+    public function test_can_send_message_to_multiple_numbers(): void
+    {
+        $numbers = [$_ENV['SARALSMS_MOBILE_NTC'], $_ENV['SARALSMS_MOBILE_NCELL'], $_ENV['SARALSMS_MOBILE_SMARTCELL']];
+        $response = $this->client->send($numbers, self::$faker->sentence);
+        self::assertIsObject($response);
+    }
 }
