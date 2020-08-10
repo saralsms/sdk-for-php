@@ -1,0 +1,31 @@
+name: Install
+on:
+  push:
+    # filter branches
+    branches:
+      - master
+      - develop
+
+jobs:
+  test:
+    # Server OS
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        # Supported PHP versions
+        php-versions: ['7.2', '7.3', '7.4']
+    steps:
+      # action for repository checkout
+      - uses: actions/checkout@v2
+
+      - name: Update composer
+        run: sudo composer self-update
+
+      - name: Version info
+        run: php --version && composer --version
+
+      - name: Init composer
+        run: composer init --no-interaction
+
+      - name: Install SaralSMS package
+        run: composer require saralsms/sdk-for-php
