@@ -9,7 +9,7 @@ class CreditTest extends ParentTestCase
     /**
      * @covers \SaralSMS\Credit\Credit::getCredits
      */
-    public function test_can_get_account_balance(): void
+    public function test_can_get_credits(): void
     {
         $response = $this->client->getCredits();
         self::assertIsObject($response);
