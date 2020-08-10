@@ -1,0 +1,45 @@
+name: Testing
+on:
+  push:
+    # filter branches
+    branches:
+      - master
+      - develop
+
+jobs:
+  test:
+    # Server OS
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        # Supported PHP versions
+        php-versions: ['7.2', '7.3', '7.4']
+    env:
+      # Secrets
+      AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+      NTC_NUMBER: ${{ secrets.NTC_NUMBER }}
+      NCELL_NUMBER: ${{ secrets.NCELL_NUMBER }}
+      SMARTCELL_NUMBER: ${{ secrets.SMARTCELL_NUMBER }}
+    steps:
+      # action for repository checkout
+      - uses: actions/checkout@v2
+
+      - name: Update composer
+        run: sudo composer self-update
+
+      - name: Version info
+        run: php --version && composer --version
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --no-suggest
+
+      - name: Create ENV
+        run: |
+          ENVS="SARALSMS_AUTH_TOKEN=$AUTH_TOKEN
+          TEST_MOBILE_NTC=$NTC_NUMBER
+          TEST_MOBILE_NCELL=$NCELL_NUMBER
+          TEST_MOBILE_SMARTCELL=$SMARTCELL_NUMBER"
+          echo "${ENVS}" > ./.env
+
+      - name: Run PHPUnit
+        run: ./vendor/bin/phpunit
