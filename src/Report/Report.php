@@ -5,7 +5,8 @@ namespace SaralSMS\Report;
 trait Report
 {
     /**
-     * This will get message report based on Message ID.
+     * This will return the reports on behalf of
+     * a authenticated token.
      *
      * @param int $pageNumber
      *
