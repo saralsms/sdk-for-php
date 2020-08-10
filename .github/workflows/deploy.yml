@@ -8,12 +8,14 @@ on:
 
 jobs:
   test:
-    # Server OS
-    runs-on: ubuntu-20.04
+    # Current OS
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        # OS list
+        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
         # Supported PHP versions
-        php-versions: ['7.2', '7.3', '7.4']
+        php: ['7.2', '7.3', '7.4']
     env:
       # Secrets
       AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
@@ -23,6 +25,11 @@ jobs:
     steps:
       # action for repository checkout
       - uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
 
       - name: Update composer
         run: sudo composer self-update
