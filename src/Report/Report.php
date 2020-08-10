@@ -18,7 +18,7 @@ trait Report
         $params = ['page' => $pageNumber];
 
         $response = $this->client
-            ->request('GET', '/v1/reports?' . http_build_query($params));
+            ->request('GET', '/v1/reports', ['query' => $params]);
         return json_decode($response->getBody(), false);
     }
 }
