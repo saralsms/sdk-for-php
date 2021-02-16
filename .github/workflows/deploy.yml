@@ -1,10 +1,9 @@
 name: Testing
+
+# run on
 on:
-  push:
-    # filter branches
-    branches:
-      - master
-      - develop
+  release:
+    types: [created]
 
 jobs:
   test:
@@ -15,7 +14,7 @@ jobs:
         # OS list
         os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
         # Supported PHP versions
-        php: ['7.2', '7.3', '7.4']
+        php: ['7.3', '7.4', '8.0']
     env:
       # Secrets
       AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
